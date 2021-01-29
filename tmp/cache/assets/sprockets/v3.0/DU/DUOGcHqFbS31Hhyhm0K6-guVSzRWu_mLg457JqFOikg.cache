@@ -1,0 +1,15 @@
+I"(function() {
+  var left, leftToRight, right;
+
+  right = document.getElementbyId('rightSquare');
+
+  left = document.getElementbyId('leftSquare');
+
+  leftToRight = function() {
+    right.innerHTML = 'a';
+  };
+
+  right.addEventListener('click', leftToRight, false);
+
+}).call(this);
+:ET

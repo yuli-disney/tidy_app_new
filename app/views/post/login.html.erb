@@ -1,0 +1,14 @@
+<div class="loginForm">    
+    <h2>Tidy_appにログイン</h2>
+    <%if @error_message%>
+    <p><%=@error_message%></p>
+    <%end%>
+    <%= form_tag("/users/login") do %>
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" id="" placeholder ="Password">
+    <button>ログイン</button> 
+    <%end%>
+    <p>or</p>
+    <a href="/posts/newuser"><button class= "new">新規登録</button></a>
+   
+</div>

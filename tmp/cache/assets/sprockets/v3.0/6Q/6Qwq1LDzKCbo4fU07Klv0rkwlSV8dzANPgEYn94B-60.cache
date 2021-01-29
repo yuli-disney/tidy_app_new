@@ -1,0 +1,15 @@
+I"æ(function() {
+  
+let right = document.getElementbyId("rightSquare")
+let left = document.getElementbyId("leftSquare")
+
+function switch(){
+    right.innerHTML = "a"
+}
+
+right.addEventListener("click",switch,false)
+;
+
+
+}).call(this);
+:ET

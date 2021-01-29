@@ -1,0 +1,109 @@
+<div class="wrapper">
+    <p class= "greetings">こんにちは、<%=@current_user.username%>さん</p>
+    
+    <div class="postOrSelect">
+        <div class="chooseOne">
+            <div id="rightSquare" class="choose choosePost">投稿</div>
+            <p><-></p>
+            <div id="leftSquare" class="choose chooseSelect">カテゴリー別</div>
+        </div>
+        <div id ="newPost" class="newPost">
+            <%= form_tag("/posts/create") do %>
+            <div class="title">
+                <div class="columnName">Title</div>
+                <div class="fill"><textarea name="title" id="" cols="30" rows="1"></textarea></div>
+            </div>
+            <div class="select">
+                <div class="columnName">Select</div>
+                <div class="fill"> 
+                <select name="select">
+                    <option value="未選択" selected>カテゴリーを選ぶ</option>
+                    <option value="よく見るページ">よく見るページ</option>
+                    <option value="とっておきたいページ">とっておきたいページ</option>
+                    
+                    <% @options.each do |option| %>                        
+                    <option value="<%= option.genre%>"><%= option.genre%></p>
+                    <%end %>
+                    </select>
+                </div>
+            </div>
+            <div class="url">
+                <div class="columnName">Url</div>
+                <div class="fill"><textarea name="url" id="" cols="30" rows="1"></textarea></div>
+            </div>
+
+            <button type="submit" class="putaway">Tidy Up!</button>
+
+            <%end%>
+        </div>
+
+        <div id="showSelect" class="showSelect">
+            <p><%= link_to("よくみるページ", "/posts/often" ,style:"color:white;",class:"textdec" )%></p>
+            <p><%= link_to("とっておきたいページ", "/posts/wanna_save" ,style:"color:white;",class:"textdec" )%></p>
+
+            <% @options.each do |option| %>
+                <div class="eachOption">                       
+                    <p id="linktogenre" class="post-contents"><%= link_to(option.genre, "/posts/option/#{option.id}" ,class:"textdec", style:"color:white;" )%></p>
+                    <div class="deleteOrEdit">
+                        <p><%= link_to("削除", "/posts/#{option.id}/destroyoption" ,style:"color:white;",method: "post",class:"textdec" )%></p>
+                    </div>
+                </div> 
+            <%end%>
+            <%= form_tag("/posts/option_create") do %>
+            <p>新しいカテゴリー</p>
+            <textarea name="genre" id="" cols="30" rows="1"></textarea>
+            <button>追加する</button>
+            <%end%>
+        </div>
+    </div>
+    <div class="wrapPosts">
+        <h2>とっておきたいページ</h2>
+        <div class="showPosts">
+            <% @posts.each do |post| %>
+                            
+                
+                <div id ="postShowSettings" class="postShowSettings">
+                    <a href="<%= post.url%>" target="_blank">
+                    <div id = "posts" class="posts-index-item">
+                        
+                        <p class="post-contents"><%= post.title%></p>
+                        
+                    </div> </a>
+                    <div id = "setting" class="deleteOrEdit">
+                            <div  id="delete" class="deletecontents"><%= link_to("削除", "/posts/#{post.id}/destroy" ,style:"color:white;",method: "post" )%></div>
+                            <div  id="edit" class="editcontents"><%= link_to("編集", "/posts/#{post.id}",style:"color:white;", method: "get" )%></div>
+                        </div>
+                    
+                </div>
+                
+
+            <%end %>
+
+            
+            <script type="text/javascript">
+                right = document.getElementById("rightSquare");
+                left = document.getElementById("leftSquare");
+                newPost = document.getElementById("newPost");
+                showSelect = document.getElementById("showSelect");
+
+                let switchRL = ()=>{
+                    if(right.innerHTML =="投稿"){
+                    right.innerHTML = "カテゴリー別"
+                    left.innerHTML = "投稿"
+                    newPost.style.display="none"
+                    showSelect.style.display = "block"
+                    }else{
+                        right.innerHTML = "投稿"
+                        left.innerHTML = "カテゴリー別"
+                        newPost.style.display="block"
+                        showSelect.style.display = "none"
+                    }
+                }
+
+
+                left.addEventListener("click",switchRL,false)
+                right.addEventListener("click",switchRL,false)
+            </script>
+        </div>
+    </div>
+        

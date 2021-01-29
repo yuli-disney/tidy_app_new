@@ -1,0 +1,20 @@
+<div class="editWrap">       
+        <div class="edit">
+                <h2>編集する</h2>
+                <%= form_tag("/posts/#{@post.id}/update") do%>
+                <textarea name="title" id="" cols="30" rows="1" placeholder = "Title"><%=@post.title%></textarea>
+                <p>今までのカテゴリ&nbsp;:<%= @post.select%></p>
+                <select name="select">
+                        <option value="未選択" selected>カテゴリを選ぶ</option>
+                        <option value="よく見るページ">よく見るページ</option>
+                        <option value="とっておきたいページ">とっておきたいページ</option>
+                        
+                        <% @options.each do |option| %>                        
+                        <option value="<%= option.genre%>"><%= option.genre%></p>
+                        <%end %>
+                        </select></p>
+                <textarea name="url" id="" cols="30" rows="1"placeholder="Url"><%=@post.url%></textarea>
+                <button type="submit">変更を保存する</button>
+                <%end%>
+                </div>
+</div>

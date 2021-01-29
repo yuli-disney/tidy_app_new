@@ -1,0 +1,16 @@
+<div class="newForm">
+    <h2>Tidy_appに新規登録</h2>
+    <%= form_tag("/users/create") do %>
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" id="" placeholder ="Password">
+    <button>新規登録</button>
+    <%end%>
+    <div class="about">
+    <h2>Tidy_appとは？</h2>
+    <div class="explanation">
+        <p>◯ パソコンが重くなるからタブを閉じたいけど消えてほしくはない、<br>でもブックマークに保存するほどではないものを管理したい</p>
+        <p>◯ サークル等で共有されるURLをメッセージを遡って探すのが面倒くさいから<br>どこかにまとめておいておきたい</p>
+        <p>という気持ちに答えたURL管理サイトです。具体的な使い方は新規登録のあとで！</p>
+    </div>
+    </div>
+</div>
